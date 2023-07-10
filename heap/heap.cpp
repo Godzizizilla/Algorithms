@@ -102,7 +102,30 @@ void buildHeap(int arr[], int n) {
     }
 }
 
-int main() {
+void deleteMax(int arr[], int &n) {
+    if (n <= 0) {
+        return; // 堆为空, 无法删除
+    }
+
+    swap(arr[0], arr[n - 1]); // 将堆顶元素与最后一个元素交换位置
+    n--; // 堆长度减1
+    buMaxHeapify(arr, n, 0); // 对新的堆顶元素进行下滤操作
+}
+
+void insert(int arr[], int &n, int key) {
+    if (n <= 0) {
+        arr[0] = key;
+        n++;
+        return;
+    }
+
+    int i = n++;
+    arr[i] = key;
+
+    tdMaxHeapify(arr, n, i);
+}
+
+/*int main() {
     int arr[] = {1, 5, 2, 7, 9, 8};
     int n = sizeof(arr) / sizeof(arr[0]);
 
@@ -114,6 +137,33 @@ int main() {
     buildHeap(arr, n);
 
     cout << "\nHeapified array: ";
+    for (int i = 0; i < n; i++) {
+        cout << arr[i] << " ";
+    }
+
+    return 0;
+}*/
+
+int main() {
+    int arr[] = {9, 5, 2, 7, 1, 8};
+    int n = sizeof(arr) / sizeof(arr[0]);
+    buildHeap(arr, n);
+
+    cout << "Original heap: ";
+    for (int i = 0; i < n; i++) {
+        cout << arr[i] << " ";
+    }
+
+    deleteMax(arr, n);
+
+    cout << "\nHeap after deleting max element: ";
+    for (int i = 0; i < n; i++) {
+        cout << arr[i] << " ";
+    }
+
+    insert(arr, n, 10);
+
+    cout << "\nHeap after inserting element: ";
     for (int i = 0; i < n; i++) {
         cout << arr[i] << " ";
     }
