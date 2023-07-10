@@ -125,6 +125,15 @@ void insert(int arr[], int &n, int key) {
     tdMaxHeapify(arr, n, i);
 }
 
+void heapSort(int arr[], int n) {
+    buildHeap(arr, n);
+
+    for (int i = n - 1; i > 0; i--) {
+        swap(arr[0], arr[i]);
+        buMaxHeapify(arr, i, 0);
+    }
+}
+
 /*int main() {
     int arr[] = {1, 5, 2, 7, 9, 8};
     int n = sizeof(arr) / sizeof(arr[0]);
@@ -144,7 +153,7 @@ void insert(int arr[], int &n, int key) {
     return 0;
 }*/
 
-int main() {
+/*int main() {
     int arr[] = {9, 5, 2, 7, 1, 8};
     int n = sizeof(arr) / sizeof(arr[0]);
     buildHeap(arr, n);
@@ -164,6 +173,25 @@ int main() {
     insert(arr, n, 10);
 
     cout << "\nHeap after inserting element: ";
+    for (int i = 0; i < n; i++) {
+        cout << arr[i] << " ";
+    }
+
+    return 0;
+}*/
+
+int main() {
+    int arr[] = {9, 5, 2, 7, 1, 8};
+    int n = sizeof(arr) / sizeof(arr[0]);
+
+    cout << "Original array: ";
+    for (int i = 0; i < n; i++) {
+        cout << arr[i] << " ";
+    }
+
+    heapSort(arr, n);
+
+    cout << "\nSorted array: ";
     for (int i = 0; i < n; i++) {
         cout << arr[i] << " ";
     }
